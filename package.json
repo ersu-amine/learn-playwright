@@ -2,7 +2,10 @@
   "name": "learn-playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "tests": "npx playwright test",
+    "report": "npx playwroght show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
