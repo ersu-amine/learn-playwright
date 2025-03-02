@@ -1,0 +1,42 @@
+naming convention
+
+for test files:
+    use test or spec extention before .js
+
+    lowerCamelCase or kebab-case
+    lowercamelcase start with lowercase then each word start in upper case
+        e.g. testLogin.spec.js
+        e.g. testLogin.test.js
+        
+    kebab case contains all lowercase with dashes in between words
+        e.g. test-login.spec.js
+        e.g. test-login.test.js
+
+for page object files:
+    PascalCase
+    words first letter in upper case
+        e.g. Login.js
+
+playwright has own test runner and framework, reporting tool, 
+has own config file and assertion capabilities.
+
+has fixtures
+    page
+        tabs in browser, open windows in browser
+    browser
+        instance of browser?
+    context
+        instance of browser application
+
+end to end testing
+    testing the flow from beginning to end
+    mostly UI automation
+
+Test script creation
+    test() function must be importest from '@playwright/test'
+
+    call test function with 2 arguments:
+        description of test
+        async function to run the test
+            fixtures and contains code to test
+            page fixture have methods, setup and teardown built in
