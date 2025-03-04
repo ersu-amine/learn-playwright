@@ -1,0 +1,18 @@
+test.describe()
+    used for creating group for related tests
+related test have same teardown and setup methods
+
+set test 1 time in test groupd to apply to all nested test cases
+
+beforeEach()
+afterEach()
+beforeAll()
+afterAll()
+
+no Junit or TestNG annotations, built in annotations from playwright
+
+1) beforeAll():
+2) beforeEach(): before each test case
+    test code excutes
+3) afterEach(): after each test case, after test has been executed
+4) afterAll(): after all test cases have been executed, like teardown methods

@@ -10,16 +10,14 @@ test('', async ({ page }) => {
     await search.fill("How to grind coffee beans");
     //press enter to search for coffee beans
     await search.press("Enter");
-    //pause for 1 seconds
-    await page.waitForTimeout(1000);
+    //pause for 1/2 seconds 
+    await page.waitForTimeout(500);
 
     //click on the 5th video
     page.locator("(//a[@id='video-title'])[5]").click();
 
     //pause for 5 seconds
-    await page.waitForTimeout(7000);
-
-
+    await page.waitForTimeout(5000);
 
 });
 
