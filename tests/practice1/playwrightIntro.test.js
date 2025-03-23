@@ -1,14 +1,14 @@
 //regular js extention files are not treated as test case
 
-//const{test} = require('@playwright/test');
+//const { test } = require('@playwright/test');
 
 import { test } from '@playwright/test';
 
 //curly brackets used to declare set by passing individiual elements to it
 //@ used for tag in description
-test("Google search test @google55", async ({ page }) => {
+test('Google search test @google55', async ({ page }) => {
 
-    await page.goto("https://www.google.com");//deal with promise by using await keyword
+    await page.goto('https://www.google.com');//deal with promise by using await keyword
 
     //locate element
     let searchInputBox = page.locator("//textarea[@class='gLFyf']");
@@ -22,8 +22,6 @@ test("Google search test @google55", async ({ page }) => {
     await searchInputBox.press("Enter"); //await used b/c returnjing promise
     await page.waitForTimeout(2000);
 
-
-    //type search keyword
 });
 
 test("Amazon seach @amazon34", async ({ page }) => {
@@ -38,7 +36,6 @@ test("Amazon seach @amazon34", async ({ page }) => {
     await page.waitForTimeout(2000);
     await searchArea.press("Enter");
     await page.waitForTimeout(2000);
-
 
 });
 
