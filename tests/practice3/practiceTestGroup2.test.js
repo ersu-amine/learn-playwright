@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 //group insert with the help of AI prompt
 test.describe('Test for internet page', () => {
@@ -19,11 +19,11 @@ test.describe('Test for internet page', () => {
 
         // Scroll to key press links
         await element.scrollIntoViewIfNeeded();
-        await page.mouse.wheel(0, 300);
-        await page.waitForTimeout(1000);
 
         // Open the key presses page
-        await element.click();
+        await element.click({force:true});
+        
+        //await page.mouse.wheel(0, 300); //alternative scrolling
         await page.waitForTimeout(1000);
 
         // Locate input box
@@ -34,11 +34,7 @@ test.describe('Test for internet page', () => {
         await inputBox.fill("Hello");
         await page.waitForTimeout(1000);
 
-
         // Confirm the last the value entered is 'Hello'
-
-
-        // Confirm the value in the input box is cleared
         let expectedValue = "Hello";
         //assertion
         await expect(await inputBox.inputValue(), "Expect the input value to be Hello").toBe(expectedValue);
@@ -55,11 +51,30 @@ test.describe('Test for internet page', () => {
         await middleUser.hover();
         await page.waitForTimeout(1000);
 
-
     });
 
-    test('Test3', async () => {
-        // Test implementation
+    test('Checkbox test', async () => {
+        //navigate to the checkboxes page
+        const link = page.locator("//a[@href='/checkboxes']");
+        await link.click();
+
+        //store the checkboxes
+        const elements = page.locator("//form[@id='checkboxes']/input");
+        //const elements = page.locator("//form[@id='checkboxes']/input").all(); //returns array and don't have nth
+        await page.waitForTimeout(1000);
+
+        //nth is for locator
+        const checkbox1 = elements.nth(0);
+        const checkbox2 = elements.nth(1);
+
+        await checkbox1.click();
+        await checkbox2.click();
+        await page.waitForTimeout(1000);
+
+        //assert that first checkbox is checked and that second checkbox is unchecked
+        await expect(await checkbox1.isChecked()).toBe(true);
+        await expect(await checkbox2.isChecked()).toBe(false);
+
     });
 
     test('Test4', async () => {
