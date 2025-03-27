@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-//group insert with the help of AI prompt
 test.describe('Test for internet page', () => {
-    let context;
+    let context; //browser?
     let page;
-    test.beforeAll(async ({ browser }) => {
+    //each time the vrwoser should be at the main page
+    test.beforeEach(async ({ browser }) => {
         context = await browser.newContext();
         page = await context.newPage(); //opens empty tab
         await page.setViewportSize({ width: 1920, height: 1080 });
@@ -21,8 +21,8 @@ test.describe('Test for internet page', () => {
         await element.scrollIntoViewIfNeeded();
 
         // Open the key presses page
-        await element.click({force:true});
-        
+        await element.click({ force: true });
+
         //await page.mouse.wheel(0, 300); //alternative scrolling
         await page.waitForTimeout(1000);
 
@@ -72,16 +72,25 @@ test.describe('Test for internet page', () => {
         await page.waitForTimeout(1000);
 
         //assert that first checkbox is checked and that second checkbox is unchecked
-        await expect(await checkbox1.isChecked()).toBe(true);
+        await expect(await checkbox1.isChecked(), "Message").toBe(true);
         await expect(await checkbox2.isChecked()).toBe(false);
 
     });
 
-    test('Test4', async () => {
-        // Test implementation
+    test('Select dropdown test', async () => {
+        //navigate to the dropdown page
+        await page.locator("//a[text()='Dropdown']").click();
+        // select by value
+        await page.locator('select#dropdown').selectOption('1');
+        await page.waitForTimeout(1000);
+        await page.locator('select#dropdown').selectOption({ label: 'Option 2' });
+        await page.waitForTimeout(1000);
+
+        //add option:checked after the locater to indicate verification for the selected option
+        await expect(page.locator('select#dropdown option:checked'), "Expect option 2 to be selected").toHaveText('Option 2');
     });
 
-    test.afterAll(async () => {
+    test.afterEach(async () => {
         await context.close();
     });
 });
